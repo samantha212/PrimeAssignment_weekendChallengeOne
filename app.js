@@ -23,13 +23,13 @@ $(document).ready(function(){
 		//Pushes values object to the array var.
 		array.push(values);
 		
-		// Creates a monthly salary for this employee, rounded to a whole number,
+		// Creates a monthly salary for this employee from string, rounded to a whole number,
 		// Then pushes it to the allMonthlySalaries array above to store for later.
-		var employeeAnnSalary = values.annSalary
-		employeeAnnSalary = employeeAnnSalary.replace(/[^0-9\.]+/g, '');
+		var employeeAnnSalary = parseInt((values.annSalary).replace(/[^0-9\.]+/g, ''));
 		var employeeMonthlySalary = Math.round(employeeAnnSalary/12);
 		allMonthlySalaries.push(employeeMonthlySalary);
-
+		
+		// Calculates total monthly salary cost and console.logs. 
 		var totalSalaries = calcTotalSal(allMonthlySalaries);
 		console.log('Total monthly salary cost is ' + totalSalaries + '.')
 	});
@@ -39,17 +39,18 @@ $(document).ready(function(){
 //Function to append entries to the DOM.
 function appendDom(object){
 	$('#displayInput').append('<div></div>');
-	var $location = $('#displayInput').children().last();
+		var $location = $('#displayInput').children().last();
 
-	$location.append('<p>' + object.employeeName + '</p>');
-	$location.append('<p>' + object.employeeID + '</p>');
-	$location.append('<p>' + object.jobTitle + '</p>');
-	$location.append('<p>' + object.annSalary + '</p>');
-	$location.append('<button class=\'button\'>Click to delete employee</button>');
-	//Adding button function to delete employee. 
-	$('.button').on('click', function(){
-		$(this).parent().remove();
-	});
+		$location.append('<p>' + object.employeeName + '</p>');
+		$location.append('<p>' + object.employeeID + '</p>');
+		$location.append('<p>' + object.jobTitle + '</p>');
+		$location.append('<p>' + object.annSalary + '</p>');
+		$location.append('<button class=\'button\'>Click to delete employee</button>');
+		
+		//Adding button function to delete employee. 
+		$('.button').on('click', function(){
+			$(this).parent().remove();
+		});
 };
 
 //Function to calculate total monthly salary cost.
