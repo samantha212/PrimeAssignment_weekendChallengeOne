@@ -33,6 +33,7 @@ $(document).ready(function(){
 		var totalSalaries = calcTotalSal(allMonthlySalaries);
 		console.log('Total monthly salary cost is ' + totalSalaries + '.')
 	});
+
 });
 
 //Function to append entries to the DOM.
@@ -44,7 +45,12 @@ function appendDom(object){
 	$location.append('<p>' + object.employeeID + '</p>');
 	$location.append('<p>' + object.jobTitle + '</p>');
 	$location.append('<p>' + object.annSalary + '</p>');
-}
+	$location.append('<button class=\'button\'>Click to delete employee</button>');
+	//Adding button function to delete employee. 
+	$('.button').on('click', function(){
+		$(this).parent().remove();
+	});
+};
 
 //Function to calculate total monthly salary cost.
 function calcTotalSal(salaries){
